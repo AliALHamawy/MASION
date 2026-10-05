@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import uiReducer from "./slices/uiSlice";
+import currencyReducer from "./slices/currencySlice";
 
 
 export const store = configureStore({
     reducer: {
         ui: uiReducer,
+        currency: currencyReducer,
     }
 })
 

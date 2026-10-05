@@ -1,3 +1,4 @@
+import Footer from "@/components/MyComponents/Footer";
 import Navbar from "@/components/MyComponents/Navbar";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -5,6 +6,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <div className="min-h-full flex flex-col">
                 <Navbar />
                 {children}
+                <Footer />
             </div>
     );
 }

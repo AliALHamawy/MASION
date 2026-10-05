@@ -50,7 +50,7 @@
 
 :root {
   /* Editorial Off-White / Cream Base */
-  --background: oklch(0.985 0.003 85);
+  --background: oklch(93.403% 0.00011 271.152);
   --foreground: oklch(0.145 0.005 85);
   
   /* Pure White Containers for Cards with Subtle Warm Borders */

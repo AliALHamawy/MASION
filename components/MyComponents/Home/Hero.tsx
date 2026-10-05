@@ -65,7 +65,7 @@ const Hero = () => {
                                 Explore Collection
                             </span>
                         </button>
-                        <button className="bg-white/20 backdrop-blur-xl border border-white/40 rounded-full px-8 py-4 font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-97">
+                        <button className="bg-white/20 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 font-semibold text-white hover:bg-white/70 hover:text-black text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-97">
                             Our Craft
                         </button>
                     </div>
