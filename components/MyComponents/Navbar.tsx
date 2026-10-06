@@ -46,7 +46,7 @@ const Navbar = () => {
     return (
         <>
             <nav className={`fixed top-0 left-0 w-full z-50 p-3 transition-transform duration-300 ease-in-out ${isNavbarVisible ? "translate-y-0" : "-translate-y-full"}`}>
-                <div className="container mx-auto mt-5 px-6 py-4 max-w-7xl flex items-center justify-between bg-muted backdrop-blur-[6px] rounded-2xl shadow-sm">
+                <div className="container mx-auto mt-5 px-6 py-4 max-w-7xl flex items-center justify-between bg-muted/70 backdrop-blur-[6px] rounded-2xl shadow-sm">
                     <span className="inline-flex gap-2 items-center"><p className="font-extrabold">MASION</p><p className="hidden md:block text-xs text-muted-foreground/50 pl-2 border-l border-muted-background font-medium">Refined Living</p></span>
                     <ul className="hidden md:flex space-x-4 items-center">
                         <Link href={"/"} className={cn("text-muted-foreground transition-colors hover:text-foreground", getLinkClass("/"))}>Home</Link>
