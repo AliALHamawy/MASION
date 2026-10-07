@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Product } from "@/types/product";
+import { HugeiconsIcon } from '@hugeicons/react';
+import {ShoppingCartAdd02Icon} from '@hugeicons/core-free-icons'
 interface ProductCardProps {
   product: Product;
 }
@@ -46,8 +48,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
         <div className="flex items-center gap-2 w-full">
-          <button className="w-full text-white text-sm font-medium py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 bg-foreground">View Details</button>
-          <button className="w-12.5 text-white  font-medium p-2 rounded-full transition-colors flex items-center justify-center bg-foreground text-xl">+</button>
+          <button className="w-full text-white text-sm font-medium py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 bg-foreground duration-300 cursor-pointer hover:bg-foreground/90">View Details</button>
+          <button className="w-12.5 text-white  font-medium p-3 rounded-full transition-colors flex items-center justify-center bg-foreground text-xl duration-300 cursor-pointer hover:bg-foreground/90">  <HugeiconsIcon
+            icon={ShoppingCartAdd02Icon}
+            size={20}
+            color="currentColor"
+            strokeWidth={1.5}
+          />
+          </button>
         </div>
       </div>
     </>

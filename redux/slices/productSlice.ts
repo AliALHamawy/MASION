@@ -1,40 +1,49 @@
-import { Product } from "@/types/product";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "@/types/product";
 
 interface FilterState {
     category: string;
     sortBy: string;
     priceRange: [number, number];
+    page: number;
 }
 
 interface ProductState {
     items: Product[];
     filteredItems: Product[];
+    paginatedItems: Product[];
+    totalPages: number; 
     filters: FilterState;
 }
+
+const ITEMS_PER_PAGE = 9;
 
 const initialState: ProductState = {
     items: [],
     filteredItems: [],
+    paginatedItems: [],
+    totalPages: 1,
     filters: {
         category: "all",
         sortBy: "featured",
         priceRange: [0, 20000],
+        page: 1,
     },
+};
 
-}
-
-const applyFilters = (state: ProductState) => {
+const applyFiltersAndPagination = (state: ProductState) => {
     let result = [...state.items];
 
-    if(state.filters.category !== "all") {
-        result = result.filter(item => item.category === state.filters.category);
+    if (state.filters.category !== "all") {
+        result = result.filter((item) => item.category === state.filters.category);
     }
 
-    const [minPrice, maxPrice] = state.filters.priceRange;  
-    result = result.filter(item => item.price >= minPrice && item.price <= maxPrice);
+    const [minPrice, maxPrice] = state.filters.priceRange;
+    result = result.filter(
+        (item) => item.price >= minPrice && item.price <= maxPrice
+    );
 
-    switch(state.filters.sortBy) {
+    switch (state.filters.sortBy) {
         case "price-low-to-high":
             result.sort((a, b) => a.price - b.price);
             break;
@@ -47,13 +56,24 @@ const applyFilters = (state: ProductState) => {
         case "name-a-to-z":
             result.sort((a, b) => a.title.localeCompare(b.title));
             break;
-            default:
+        case "name-z-to-a":
+            result.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        default:
             break;
     }
 
     state.filteredItems = result;
 
-}
+    state.totalPages = Math.ceil(result.length / ITEMS_PER_PAGE) || 1;
+
+    if (state.filters.page > state.totalPages) {
+        state.filters.page = 1;
+    }
+
+    const startIndex = (state.filters.page - 1) * ITEMS_PER_PAGE;
+    state.paginatedItems = result.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+};
 
 const productSlice = createSlice({
     name: "products",
@@ -61,23 +81,35 @@ const productSlice = createSlice({
     reducers: {
         setInitialProducts: (state, action: PayloadAction<Product[]>) => {
             state.items = action.payload;
-            applyFilters(state);
+            applyFiltersAndPagination(state);
         },
         setCategory: (state, action: PayloadAction<string>) => {
             state.filters.category = action.payload;
-            applyFilters(state);
+            state.filters.page = 1; 
+            applyFiltersAndPagination(state);
         },
         setSortBy: (state, action: PayloadAction<string>) => {
             state.filters.sortBy = action.payload;
-            applyFilters(state);
+            applyFiltersAndPagination(state);
         },
         setPriceRange: (state, action: PayloadAction<[number, number]>) => {
             state.filters.priceRange = action.payload;
-            applyFilters(state);
+            state.filters.page = 1; 
+            applyFiltersAndPagination(state);
         },
-    }
-})
+        setPage: (state, action: PayloadAction<number>) => {
+            state.filters.page = action.payload;
+            applyFiltersAndPagination(state);
+        },
+    },
+});
 
-export const { setInitialProducts, setCategory, setSortBy, setPriceRange } = productSlice.actions;
+export const {
+    setInitialProducts,
+    setCategory,
+    setSortBy,
+    setPriceRange,
+    setPage,
+} = productSlice.actions;
 
 export default productSlice.reducer;
