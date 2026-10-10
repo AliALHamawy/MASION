@@ -21,7 +21,8 @@
   },
   "menuColor": "default",
   "menuAccent": "subtle",
-  "registries": { 
-    "@shadcnblocks": "https://www.shadcnblocks.com/r/{style}/{name}"
-  } 
+  "registries": {
+    "@shadcnblocks": "https://www.shadcnblocks.com/r/{style}/{name}",
+    "@magicui": "https://magicui.design/r/{name}"
+  }
 }

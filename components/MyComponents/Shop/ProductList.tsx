@@ -6,6 +6,7 @@ import { Product } from "@/types/product";
 import { ShopPagination } from "./Pagination";
 import { useAppdispatch, useAppSelector } from "@/redux/hooks";
 import { setInitialProducts } from "@/redux/slices/productSlice";
+import { useSyncFilters } from "@/hooks/useSyncFilters";
 
 interface ProductListProps {
     initialProducts: Product[];
@@ -14,7 +15,8 @@ interface ProductListProps {
 const ProductList = ({ initialProducts }: ProductListProps) => {
     const dispatch = useAppdispatch();
 
-    // سحب الـ 9 منتجات الخاصة بالصفحة الحالية فقط
+    useSyncFilters(); 
+
     const paginatedProducts = useAppSelector(
         (state) => state.products.paginatedItems
     );

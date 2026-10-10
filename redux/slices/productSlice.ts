@@ -101,6 +101,18 @@ const productSlice = createSlice({
             state.filters.page = action.payload;
             applyFiltersAndPagination(state);
         },
+        setFiltersFromURL: (state, action:PayloadAction<{
+            category?: string;
+            sortBy?: string;
+            priceRange?: [number, number];
+            page?: number;
+        }>) => {
+            action.payload.category !== undefined && (state.filters.category = action.payload.category);
+            action.payload.sortBy !== undefined && (state.filters.sortBy = action.payload.sortBy);
+            action.payload.priceRange !== undefined && (state.filters.priceRange = action.payload.priceRange);
+            action.payload.page !== undefined && (state.filters.page = action.payload.page);
+            applyFiltersAndPagination(state);
+        }
     },
 });
 
@@ -110,6 +122,7 @@ export const {
     setSortBy,
     setPriceRange,
     setPage,
+    setFiltersFromURL,
 } = productSlice.actions;
 
 export default productSlice.reducer;
