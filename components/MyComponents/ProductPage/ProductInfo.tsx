@@ -6,14 +6,14 @@ import ProductPrice from "./ProductPrice";
 import ProductRating from "./ProductRating";
 import ProductTags from "./ProductTags";
 
-const ProductInfo = () => {
+const ProductInfo = ({ product }: { product: any }) => {
     return (
         <div className="flex flex-col w-full gap-7 pt-5">
-            <ProductHeader />
-            <ProductRating />
-            <ProductPrice />
-            <ProductDescription />
-            <ProductTags />
+            <ProductHeader product={product} />
+            <ProductRating product={product} />
+            <ProductPrice product={product} />
+            <ProductDescription product={product} />
+            <ProductTags product={product} />
             <ProductActions />
             <ProductFeatures />
         </div>

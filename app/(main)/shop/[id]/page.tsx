@@ -32,7 +32,8 @@ const page = async ({ params }: props) => {
         <>
             <main className="max-w-7xl w-full mx-auto px-4 flex flex-col my-35 min-h-screen gap-10">
                 <MyBreadcrumb product={product} />
-                <ProductMain />
+                {/* تمرير بيانات المنتج هنا ليتم توزيعها على الـ Gallery والـ Info */}
+                <ProductMain product={product} />
             </main>
         </>
     )

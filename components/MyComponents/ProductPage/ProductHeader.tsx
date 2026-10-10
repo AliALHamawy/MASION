@@ -1,8 +1,8 @@
-const ProductHeader = () => {
+const ProductHeader = ({ product }: { product: any }) => {
     return (
         <>
-            <h1 className="text-4xl font-bold order-2">Chanel Coco Noir Eau De</h1>
-            <span className="order-1">Chanel / fragrances</span>
+            <h1 className="text-4xl font-bold order-2">{product.title}</h1>
+            <span className="order-1">{product.brand} / {product.category}</span>
         </>
     );
 };
