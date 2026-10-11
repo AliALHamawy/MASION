@@ -158,4 +158,7 @@
   html {
     @apply font-sans antialiased;
   }
+  button, li, Link {
+    @apply cursor-pointer ;
+  }
 }

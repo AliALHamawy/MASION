@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Lens } from "@/components/ui/lens";
 import Image from "next/legacy/image";
+import { ShieldCheckIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 interface ProductGalleryProps {
     images: string[];
@@ -40,7 +42,6 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
                 </Lens>
             </div>
 
-            {/* الصور المصغرة الديناميكية (Thumbnails) */}
             <div className="w-full justify-start items-center gap-3 h-[120px] overflow-x-auto overflow-y-hidden flex">
                 {images.map((img, index) => (
                     <div
@@ -58,6 +59,10 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
                     </div>
                 ))}
             </div>
+            <span className="text-sm text-muted-foreground flex text-center justify-center items-center gap-1">
+            <HugeiconsIcon icon={ShieldCheckIcon} size={16} />
+                Selected with intention. Made to be treasured.
+            </span>
         </div>
     );
 };

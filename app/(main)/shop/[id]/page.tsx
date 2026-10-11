@@ -1,5 +1,6 @@
 import MyBreadcrumb from "@/components/MyComponents/ProductPage/MyBreadcrumb";
 import ProductMain from "@/components/MyComponents/ProductPage/ProductMain";
+import Feature from "@/components/MyComponents/ProductPage/Feature";
 import { Product } from "@/types/product"
 import { notFound } from "next/navigation";
 
@@ -32,8 +33,8 @@ const page = async ({ params }: props) => {
         <>
             <main className="max-w-7xl w-full mx-auto px-4 flex flex-col my-35 min-h-screen gap-10">
                 <MyBreadcrumb product={product} />
-                {/* تمرير بيانات المنتج هنا ليتم توزيعها على الـ Gallery والـ Info */}
                 <ProductMain product={product} />
+                <Feature product={product}/>
             </main>
         </>
     )
