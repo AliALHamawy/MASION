@@ -38,15 +38,15 @@ const Feature = ({ product }: { product: any }) => {
                     {filters.map((filter) => (
 
                         <button className={cn("flex flex-col group items-start uppercase text-sm text-muted-foreground transition-colors duration-300 hover:text-primary cursor-pointer", section === filter.section && "text-primary")} key={filter.id} onClick={() => setSection(filter.section)}>
-                            {filter.title} {filter.title === "Reviews" && "(3)"}
+                            {filter.title} {filter.title === "Reviews" && `(${product.reviews.length})`}
                             <div className={cn("h-1 w-0 bg-primary group-hover:w-full transition-normal duration-300 ease-in-out rounded-xs mt-1", section === filter.section && "w-full")}></div>
                         </button>
                     ))}
                 </div>
                 
-                {section === "reviews" && <Reviews />}
+                {section === "reviews" && <Reviews product={product} />}
                 {section === "specifications" && <Specifications product={product} />}
-                {section === "description" && <Description />}
+                {section === "description" && <Description product={product} />}
             </div>
         </>
     )

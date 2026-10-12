@@ -1,26 +1,26 @@
 import { CheckIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-const discrip = [
-    {
-    id: 1,
-    title: "From the Chanel collection",
-},
-    {
-    id: 2,
-    title: "Selected for quality, character, and intention",
-},
-    {
-    id: 3,
-    title: "Ships overnight",
-},
-    {
-    id: 4,
-    title: "No return policy",
-},
-]
 
-const Description = () => {
+const Description = ({ product }: { product: any }) => {
+    const discrip = [
+        {
+        id: 1,
+        title: `From the ${product.brand} collection`,
+    },
+        {
+        id: 2,
+        title: "Selected for quality, character, and intention",
+    },
+        {
+        id: 3,
+        title: "Ships overnight",
+    },
+        {
+        id: 4,
+        title: "No return policy",
+    },
+    ]
     return (
         <div className="w-full py-10 grid grid-cols-1 md:grid-cols-2 items-start gap-3 gap-x-10">
             <div className="flex flex-col gp-2 w-full items-start">

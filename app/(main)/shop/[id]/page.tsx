@@ -1,6 +1,7 @@
 import MyBreadcrumb from "@/components/MyComponents/ProductPage/MyBreadcrumb";
 import ProductMain from "@/components/MyComponents/ProductPage/ProductMain";
 import Feature from "@/components/MyComponents/ProductPage/Feature";
+import SimilerProducts from "@/components/MyComponents/ProductPage/SimilerProducts";
 import { Product } from "@/types/product"
 import { notFound } from "next/navigation";
 
@@ -35,6 +36,7 @@ const page = async ({ params }: props) => {
                 <MyBreadcrumb product={product} />
                 <ProductMain product={product} />
                 <Feature product={product}/>
+                <SimilerProducts category={product.category} currentProductId={product.id} />
             </main>
         </>
     )
