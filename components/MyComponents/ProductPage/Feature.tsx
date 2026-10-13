@@ -5,6 +5,7 @@ import Description from "./Description";
 import Reviews from "./Reviews";
 import Specifications from "./Specifications";
 import { cn } from "@/lib/utils";
+import { Product } from "@/types/product";
 interface Filters {
     id: number;
     title: string;
@@ -29,7 +30,7 @@ const filters: Filters[] = [
     }
 ];
 
-const Feature = ({ product }: { product: any }) => {
+const Feature = ({ product }: { product: Product }) => {
     const [section, setSection] = useState("description");
     return (
         <>

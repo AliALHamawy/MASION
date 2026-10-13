@@ -1,11 +1,12 @@
 import ProductCard, { Product } from "@/components/MyComponents/Home/ProductCard";
+import { API_BASE_URL } from "@/lib/api";
 
 interface ProductsResponse {
     products: Product[];
 }
 
 const getFeatureProducts = async (): Promise<Product[]> => {
-    const res = await fetch('https://dummyjson.com/products?limit=6', {
+    const res = await fetch(`${API_BASE_URL}/products?limit=6`, {
         next: { revalidate: 3600 } // Revalidate every 60 seconds
     });
     if (!res.ok) {

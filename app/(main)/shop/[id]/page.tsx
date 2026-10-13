@@ -3,6 +3,7 @@ import ProductMain from "@/components/MyComponents/ProductPage/ProductMain";
 import Feature from "@/components/MyComponents/ProductPage/Feature";
 import SimilerProducts from "@/components/MyComponents/ProductPage/SimilerProducts";
 import { Product } from "@/types/product"
+import { getProduct } from "@/lib/api";
 import { notFound } from "next/navigation";
 
 interface props {
@@ -11,12 +12,7 @@ interface props {
 
 const gitSinglrProduct = async (id: string): Promise<Product | null> => {
     try {
-        const res = await fetch(`https://dummyjson.com/products/${id}`, {
-            next: { revalidate: 3600 }
-        })
-        if (!res.ok) return null
-        const data: Product = await res.json()
-        return data
+        return await getProduct(id);
     } catch (error) {
         return null
     }

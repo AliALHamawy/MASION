@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Product } from "@/types/product";
 
-const Specifications = ({ product }: { product: any }) => {
+const Specifications = ({ product }: { product: Product }) => {
     return (
         <div className="w-full py-10 ">
             <Table className="w-full border-b-0">

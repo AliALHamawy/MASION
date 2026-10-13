@@ -3,31 +3,19 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import ProductCard from "@/components/MyComponents/Shop/ProductCard";
 import { Product } from "@/types/product";
+import { getProductsByCategory } from "@/lib/api";
 
 interface SimilarProductsProps {
     category: string;
     currentProductId: number;
 }
 
-interface ProductsResponse {
-    products: Product[];
-}
-
 const SimilerProducts = async ({
     category,
     currentProductId,
 }: SimilarProductsProps) => {
-    const response = await fetch(
-        `https://dummyjson.com/products/category/${encodeURIComponent(category)}?limit=5`,
-        { next: { revalidate: 3600 } },
-    );
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch similar products for category "${category}"`);
-    }
-
-    const data: ProductsResponse = await response.json();
-    const similarProducts = data.products
+    const products = await getProductsByCategory(category);
+    const similarProducts = products
         .filter((product) => product.id !== currentProductId)
         .slice(0, 4);
 

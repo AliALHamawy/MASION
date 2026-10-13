@@ -1,13 +1,14 @@
 import { StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { Product } from "@/types/product";
 
 
-const Reviews = ({product}: {product: any}) => {    
+const Reviews = ({product}: {product: Product}) => {
 
     return (
         <>
             <div className="w-full py-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
-                {product.reviews.map((review: any, index: number) => (
+                {product.reviews.map((review, index) => (
 
                     <div className="flex flex-col items-start justify-start gap-4 border-l border-border pl-2" key={index}>
                     <div className="flex items-center gap-2">

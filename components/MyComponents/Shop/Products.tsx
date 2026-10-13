@@ -1,17 +1,18 @@
 import Filters from "@/components/MyComponents/Shop/Filters";
 import { Product } from "@/types/product";
 import ProductList from "./ProductList";
+import { API_BASE_URL } from "@/lib/api";
+
 const getProducts = async (): Promise<Product[]> => {
-    const res = await fetch("https://dummyjson.com/products?limit=194",
-        {
-            next: { revalidate: 3600 }
-        });
+    const res = await fetch(`${API_BASE_URL}/products?limit=194`, {
+        next: { revalidate: 3600 },
+    });
     if (!res.ok) {
         throw new Error("Failed to fetch products");
     }
-    const data = await res.json();
+    const data: { products: Product[] } = await res.json();
     return data.products;
-}
+};
 
 const Products = async () => {
     const products = await getProducts();
