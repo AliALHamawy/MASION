@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Product } from "@/types/product";
-import { HugeiconsIcon } from '@hugeicons/react';
-import {ShoppingCartAdd02Icon} from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ShoppingCartAdd02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
+import AddToCartButton from "@/components/MyComponents/Shop/AddToCartButton";
 interface ProductCardProps {
   product: Product;
 }
@@ -26,8 +27,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
         <div className="flex gap-2 w-full justify-between items-center pl-2 min-h-7">
-          <h3 className="font-bold text-lg line-clamp-1 cursor-pointer hover:underline ">{product.title}</h3>
-          <span className="bg-foreground text-white text-xs font-semibold px-3 py-1 rounded-full shrink-0">{product.price}$</span>
+          <h3 className="font-bold text-lg line-clamp-1 cursor-pointer hover:underline ">
+            {product.title}
+          </h3>
+          <span className="bg-foreground text-white text-xs font-semibold px-3 py-1 rounded-full shrink-0">
+            {product.price}$
+          </span>
         </div>
         <p className="text-muted-foreground text-xs line-clamp-2 leading-relaxed pl-2 min-h-10">
           {product.description}
@@ -50,15 +55,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <div className="flex items-center gap-2 w-full mt-auto">
           <Link href={`/shop/${product.id}`} className="w-full">
-          <button className="w-full text-white text-sm font-medium py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 bg-foreground duration-300 cursor-pointer hover:bg-foreground/90">View Details</button>
+            <button className="w-full text-white text-sm font-medium py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 bg-foreground duration-300 cursor-pointer hover:bg-foreground/90">
+              View Details
+            </button>
           </Link>
-          <button className="w-12.5 text-white  font-medium p-3 rounded-full transition-colors flex items-center justify-center bg-foreground text-xl duration-300 cursor-pointer hover:bg-foreground/90">  <HugeiconsIcon
-            icon={ShoppingCartAdd02Icon}
-            size={20}
-            color="currentColor"
-            strokeWidth={1.5}
-          />
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </>

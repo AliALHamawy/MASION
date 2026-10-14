@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import MobileMenu from './MobileMenu';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 
 const Navbar = () => {
@@ -17,6 +19,14 @@ const Navbar = () => {
     const isNavbarVisible = useAppSelector((state) => state.ui.isNavbarVisible);
     const isMobileMenuOpen = useAppSelector((state) => state.ui.isMopileMenueOpen);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const totalItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     const getLinkClass = (path: string) => {
         return `${pathName === path
@@ -57,7 +67,12 @@ const Navbar = () => {
                         <button aria-label="Search" className="hidden md:inline p-1 rounded-full text-muted-foreground hover:text-foreground transition-colors hover:bg-background">
                             <HugeiconsIcon icon={Search02Icon} size={20} />
                         </button>
-                        <button aria-label="Cart" className="p-1 rounded-full text-muted-foreground hover:text-foreground transition-colors hover:bg-background">
+                        <button aria-label="Cart" className="p-1 rounded-full text-muted-foreground hover:text-foreground transition-colors hover:bg-background relative">
+                            {isMounted && totalItemsCount > 0 && (
+                                <span className="absolute -top-1 -left-1 bg-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-scale-in">
+                                    {totalItemsCount}
+                                </span>
+                            )}
                             <HugeiconsIcon icon={ShoppingBag02Icon} size={20} />
                         </button>
                         <button aria-label="Cart" className=" md:hidden p-1 rounded-full text-muted-foreground hover:text-foreground transition-colors bg-background" onClick={() => dispatch(toggleMobileMenu())}>

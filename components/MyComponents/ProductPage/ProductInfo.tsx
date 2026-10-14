@@ -14,7 +14,7 @@ const ProductInfo = ({ product }: { product: any }) => {
             <ProductPrice product={product} />
             <ProductDescription product={product} />
             <ProductTags product={product} />
-            <ProductActions />
+            <ProductActions product={product} />
             <ProductFeatures />
         </div>
     );
