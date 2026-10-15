@@ -2,6 +2,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { PlusIcon } from '@hugeicons/core-free-icons';
 import Image from 'next/legacy/image';
 import PriceTag from './PriceTag';
+import Link from 'next/link';
 
 export interface Product {
     id: number;
@@ -23,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
     return (
         <>
-            <div className="relative p-2 rounded-xl bg-white group hover:translate-y-[-5px] transition-all duration-300 ease-in-out shadow-md hover:shadow-xl">
+            <Link href={`/shop/${product.id}`} className="relative p-2 rounded-xl bg-white group hover:translate-y-[-5px] transition-all duration-300 ease-in-out shadow-md hover:shadow-xl">
                 <div className="relative overflow-hidden rounded-xl">
 
                     <Image src={product.thumbnail} alt={product.title} width={500} height={500} className="w-full h-auto rounded-xl relative transition-all duration-400 ease-in-out group-hover:scale-103 group-hover:rotate-2 grayscale-100 group-hover:grayscale-0" />
@@ -53,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         </>
     )
 }
