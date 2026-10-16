@@ -3,6 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { TShirtIcon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const heroImages = [
     "/images/hero1.jpg",
@@ -55,7 +56,7 @@ const Hero = () => {
                     </p>
 
                     <div className="relative z-10 flex flex-row space-x-4  items-stratch justify-center">
-                        <button className="group relative inline-flex items-center justify-center gap-3 bg-white text-black hover:bg-black hover:text-white px-8 py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-500 overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 active:scale-97">
+                        <Link href="/shop" className="group relative inline-flex items-center justify-center gap-3 bg-white text-black hover:bg-black hover:text-white px-8 py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-500 overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 active:scale-97">
                             <HugeiconsIcon
                                 icon={ArrowRight02Icon}
                                 className="transition-all duration-500 transform group-hover:translate-x-37 group-hover:text-white order-1 sm:order-0"
@@ -64,10 +65,10 @@ const Hero = () => {
                             <span className="transition-all duration-500 transform group-hover:-translate-x-8">
                                 Explore Collection
                             </span>
-                        </button>
-                        <button className="bg-white/20 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 font-semibold text-white hover:bg-white/70 hover:text-black text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-97">
+                        </Link>
+                        <Link href="/craft" className="bg-white/20 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 font-semibold text-white hover:bg-white/70 hover:text-black text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-97">
                             Our Craft
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="relative z-10 flex items-center justify-center gap-2 mt-4">

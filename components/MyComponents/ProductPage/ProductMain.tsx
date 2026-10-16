@@ -1,5 +1,5 @@
-import ProductGallery from "./ProductGallery";
-import ProductInfo from "./ProductInfo";
+import ProductGallery from "@/components/MyComponents/ProductPage/ProductGallery";
+import ProductInfo from "@/components/MyComponents/ProductPage/ProductInfo";
 import { Product } from "@/types/product";
 
 interface ProductMainProps {

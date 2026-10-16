@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import uiReducer from "./slices/uiSlice";
-import currencyReducer from "./slices/currencySlice";
-import productReducer from "./slices/productSlice";
-import cartReducer from "./slices/cartSlice";
+import uiReducer from "@/redux/slices/uiSlice";
+import currencyReducer from "@/redux/slices/currencySlice";
+import productReducer from "@/redux/slices/productSlice";
+import cartReducer from "@/redux/slices/cartSlice";
 
 export const store = configureStore({
     reducer: {

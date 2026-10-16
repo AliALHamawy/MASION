@@ -4,6 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ShoppingCartAdd02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import AddToCartButton from "@/components/MyComponents/Shop/AddToCartButton";
+import PriceTag from "@/components/MyComponents/Home/PriceTag";
 interface ProductCardProps {
   product: Product;
 }
@@ -31,7 +32,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.title}
           </h3>
           <span className="bg-foreground text-white text-xs font-semibold px-3 py-1 rounded-full shrink-0">
-            {product.price}$
+            <PriceTag priceInUSD={product.price} />
           </span>
         </div>
         <p className="text-muted-foreground text-xs line-clamp-2 leading-relaxed pl-2 min-h-10">

@@ -2,8 +2,12 @@
 
 import { useEffect } from 'react'
 import {Provider} from 'react-redux'
-import { store } from './store'
-import { CURRENCIES, setCurrency, type CurrencyCode } from './slices/currencySlice'
+import { store } from "@/redux/store";
+import {
+  CURRENCIES,
+  setCurrency,
+  type CurrencyCode,
+} from "@/redux/slices/currencySlice";
 
 export const ReduxProvider = ({children}: {children: React.ReactNode}) => {
     useEffect(() => {

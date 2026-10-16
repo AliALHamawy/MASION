@@ -1,7 +1,7 @@
 import { HugeiconsIcon } from '@hugeicons/react';
 import { PlusIcon } from '@hugeicons/core-free-icons';
 import Image from 'next/legacy/image';
-import PriceTag from './PriceTag';
+import PriceTag from "@/components/MyComponents/Home/PriceTag";
 import Link from 'next/link';
 
 export interface Product {

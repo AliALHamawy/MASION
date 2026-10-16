@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import Description from "./Description";
-import Reviews from "./Reviews";
-import Specifications from "./Specifications";
+import Description from "@/components/MyComponents/ProductPage/Description";
+import Reviews from "@/components/MyComponents/ProductPage/Reviews";
+import Specifications from "@/components/MyComponents/ProductPage/Specifications";
 import { cn } from "@/lib/utils";
 import { Product } from "@/types/product";
 interface Filters {

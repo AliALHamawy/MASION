@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import ProductCard from "@/components/MyComponents/Shop/ProductCard";
 import { Product } from "@/types/product";
-import { ShopPagination } from "./Pagination";
+import { ShopPagination } from "@/components/MyComponents/Shop/Pagination";
 import { useAppdispatch, useAppSelector } from "@/redux/hooks";
 import { setInitialProducts } from "@/redux/slices/productSlice";
 import { useSyncFilters } from "@/hooks/useSyncFilters";

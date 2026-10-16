@@ -15,7 +15,7 @@ import {
     toggleMobileMenu,
 } from "@/redux/slices/uiSlice";
 import { useEffect, useState } from "react";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "@/components/MyComponents/MobileMenu";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
