@@ -1,6 +1,6 @@
 import { HugeiconsIcon } from '@hugeicons/react';
 import { PlusIcon } from '@hugeicons/core-free-icons';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import PriceTag from "@/components/MyComponents/Home/PriceTag";
 import Link from 'next/link';
 
@@ -27,7 +27,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Link href={`/shop/${product.id}`} className="relative p-2 rounded-xl bg-white group hover:translate-y-[-5px] transition-all duration-300 ease-in-out shadow-md hover:shadow-xl">
                 <div className="relative overflow-hidden rounded-xl">
 
-                    <Image src={product.thumbnail} alt={product.title} width={500} height={500} className="w-full h-auto rounded-xl relative transition-all duration-400 ease-in-out group-hover:scale-103 group-hover:rotate-2 grayscale-100 group-hover:grayscale-0" />
+                    <div className="relative aspect-square w-full">
+                        <Image src={product.thumbnail} alt={product.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="rounded-xl object-cover transition-all duration-400 ease-in-out group-hover:scale-103 group-hover:rotate-2 grayscale-100 group-hover:grayscale-0" />
+                    </div>
                     <div className="absolute inset-x-0 bottom-0 pt-10 p-6 bg-gradient-to-t from-black/70 via-black/40 to-transparent backdrop-blur-[1px] text-white flex flex-col justify-end gap-1.5absolute width-full button-0">
                         <div className="w-full flex flex-col gap-2">
                             <span className="text-white/70 text-[11px] font-medium uppercase tracking-wider">{product.category}</span>

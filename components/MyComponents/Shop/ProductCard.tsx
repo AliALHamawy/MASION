@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { Product } from "@/types/product";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ShoppingCartAdd02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import AddToCartButton from "@/components/MyComponents/Shop/AddToCartButton";
 import PriceTag from "@/components/MyComponents/Home/PriceTag";
@@ -17,8 +15,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Image
             src={product.thumbnail}
             alt={product.title}
-            width={500}
-            height={500}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="rounded-lg w-full h-full object-contain bg-muted"
           />
           {product.discountPercentage > 0 && (
@@ -29,7 +27,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <div className="flex gap-2 w-full justify-between items-center pl-2 min-h-7">
           <h3 className="font-bold text-lg line-clamp-1 cursor-pointer hover:underline ">
-          <Link href={`/shop/${product.id}`} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">
+          <Link href={`/shop/${product.id}`} className="hover:text-foreground transition-colors duration-300">
             {product.title}
           </Link>
           </h3>

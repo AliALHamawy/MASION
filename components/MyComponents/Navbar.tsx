@@ -15,12 +15,18 @@ import {
     toggleMobileMenu,
 } from "@/redux/slices/uiSlice";
 import { useEffect, useState } from "react";
-import MobileMenu from "@/components/MyComponents/MobileMenu";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import CartDrawer from "@/components/MyComponents/CartDrawer";
+import dynamic from "next/dynamic";
+
+const DeferredCartDrawer = dynamic(() => import("@/components/MyComponents/CartDrawer"), {
+    ssr: false,
+});
+const DeferredMobileMenu = dynamic(() => import("@/components/MyComponents/MobileMenu"), {
+    ssr: false,
+});
 
 const Navbar = () => {
     const pathName = usePathname();
@@ -116,7 +122,7 @@ const Navbar = () => {
                         >
                             <HugeiconsIcon icon={Search02Icon} size={20} />
                         </button>
-                        <CartDrawer />
+                        <DeferredCartDrawer />
                         <button
                             aria-label="Cart"
                             className=" md:hidden p-1 rounded-full text-muted-foreground hover:text-foreground transition-colors bg-background"
@@ -129,7 +135,7 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
-                <MobileMenu
+                <DeferredMobileMenu
                     isMobileMenuOpen={isMobileMenuOpen}
                     dispatch={dispatch}
                     closeMobileMenu={closeMobileMenu}

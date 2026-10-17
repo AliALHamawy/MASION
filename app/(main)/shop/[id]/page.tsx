@@ -66,8 +66,46 @@ const page = async ({ params }: props) => {
     if (!product) {
         notFound()
     }
+    const productJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: product.title,
+        description: product.description,
+        image: product.images,
+        sku: product.sku,
+        brand: {
+            "@type": "Brand",
+            name: product.brand || "MAISON",
+        },
+        offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: product.price,
+            availability: product.stock > 0
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+            url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://maison.example.com"}/shop/${product.id}`,
+        },
+    };
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+            { "@type": "ListItem", position: 2, name: "Shop", item: "/shop" },
+            { "@type": "ListItem", position: 3, name: product.title },
+        ],
+    };
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c") }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+            />
             <main className="max-w-7xl w-full mx-auto px-4 flex flex-col my-35 min-h-screen gap-10">
                 <MyBreadcrumb product={product} />
                 <ProductMain product={product} />

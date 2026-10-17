@@ -1,5 +1,3 @@
-"use client";
-
 import {
     Pagination,
     PaginationContent,
@@ -9,21 +7,15 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useAppdispatch, useAppSelector } from "@/redux/hooks";
-import { setPage } from "@/redux/slices/productSlice";
 
-export function ShopPagination() {
-    const dispatch = useAppdispatch();
-    const page = useAppSelector((state) => state.products.filters.page);
-    const totalPages = useAppSelector((state) => state.products.totalPages);
+export function ShopPagination({ totalPages = 1, page = 1, query = "" }: { totalPages?: number; page?: number; query?: string }) {
 
     if (totalPages <= 1) return null;
 
-    const handlePageChange = (newPage: number) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            dispatch(setPage(newPage));
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
+    const pageHref = (newPage: number) => {
+        const params = new URLSearchParams(query);
+        params.set("page", String(newPage));
+        return `/shop?${params.toString()}`;
     };
 
     // دالة لتوليد أرقام الصفحات والنقاط (Ellipsis)
@@ -75,7 +67,7 @@ export function ShopPagination() {
                     <PaginationItem>
                         <PaginationPrevious
                             className="cursor-pointer"
-                            onClick={() => handlePageChange(page - 1)}
+                            href={page > 1 ? pageHref(page - 1) : "#"}
                         />
                     </PaginationItem>
 
@@ -94,7 +86,7 @@ export function ShopPagination() {
                                 <PaginationLink
                                     className="cursor-pointer"
                                     isActive={p === page}
-                                    onClick={() => handlePageChange(p)}
+                                    href={pageHref(p)}
                                 >
                                     {p}
                                 </PaginationLink>
@@ -106,7 +98,7 @@ export function ShopPagination() {
                     <PaginationItem>
                         <PaginationNext
                             className="cursor-pointer"
-                            onClick={() => handlePageChange(page + 1)}
+                            href={page < totalPages ? pageHref(page + 1) : "#"}
                         />
                     </PaginationItem>
                 </PaginationContent>

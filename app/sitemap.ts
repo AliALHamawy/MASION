@@ -29,21 +29,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const response = await fetch("https://dummyjson.com/products?limit=0", {
-    next: { revalidate: 3600 },
-  });
+  let productPages: MetadataRoute.Sitemap = [];
+  try {
+    const response = await fetch("https://dummyjson.com/products?limit=0", {
+      next: { revalidate: 3600 },
+    });
 
-  if (!response.ok) {
-    throw new Error(`Failed to generate sitemap: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`Failed to generate sitemap: ${response.status}`);
+    }
+
+    const data: ProductsResponse = await response.json();
+    productPages = data.products.map((product) => ({
+      url: `${siteUrl}/shop/${product.id}`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.error("Unable to load product URLs for sitemap", error);
   }
-
-  const data: ProductsResponse = await response.json();
-  const productPages: MetadataRoute.Sitemap = data.products.map((product) => ({
-    url: `${siteUrl}/shop/${product.id}`,
-    lastModified,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
 
   return [...staticPages, ...productPages];
 }

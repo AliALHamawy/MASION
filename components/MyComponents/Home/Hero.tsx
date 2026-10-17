@@ -4,6 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { TShirtIcon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const heroImages = [
     "/images/hero1.jpg",
@@ -31,10 +32,19 @@ const Hero = () => {
                     {heroImages.map((imgSrc, index) => (
                         <div
                             key={imgSrc}
-                            style={{ backgroundImage: `url('${imgSrc}')` }}
-                            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out scale-110 ${index === bgIndex ? "opacity-100" : "opacity-0"
+                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out scale-110 ${index === bgIndex ? "opacity-100" : "opacity-0 pointer-events-none"
                                 }`}
-                        />
+                        >
+                            <Image
+                                src={imgSrc}
+                                alt={index === 0 ? "MAISON refined living collection" : ""}
+                                fill
+                                priority={index === 0}
+                                loading={index === 0 ? undefined : "lazy"}
+                                sizes="100vw"
+                                className="object-cover object-center"
+                            />
+                        </div>
                     ))}
 
                     <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] scale-110" />

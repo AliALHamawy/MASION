@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Lens } from "@/components/ui/lens";
-import Image from "next/legacy/image";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ShieldCheckIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
@@ -34,7 +34,8 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
                         <Image
                             src={selectedImage}
                             alt="Product Image"
-                            layout="fill"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                             className="object-cover object-center"
                         />
@@ -53,7 +54,9 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
                         <Image
                             src={img}
                             alt={`Thumbnail ${index + 1}`}
-                            layout="fill"
+                            fill
+                            sizes="100px"
+                            loading="lazy"
                             className="object-cover object-center bg-white"
                         />
                     </div>
@@ -68,3 +71,6 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
 };
 
 export default ProductGallery;
+const Lens = dynamic(() => import("@/components/ui/lens").then((module) => module.Lens), {
+    ssr: false,
+});

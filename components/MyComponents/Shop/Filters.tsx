@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { useAppdispatch, useAppSelector } from "@/redux/hooks";
-import { setCategory, setPriceRange, setSortBy } from "@/redux/slices/productSlice";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 
 interface CategorySort {
     value: string;
@@ -57,8 +57,27 @@ const sortOptions: CategorySort[] = [
 
 const Filters = () => {
     // const [value, setValue] = useState<number[]>([0, 20000]);
-    const dispatch = useAppdispatch();
-    const filters = useAppSelector((state) => state.products.filters);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const filters = useMemo(() => ({
+        category: searchParams.get("category") ?? "all",
+        sortBy: searchParams.get("sort") ?? "featured",
+        priceRange: [
+            Number(searchParams.get("minPrice")) || 0,
+            Number(searchParams.get("maxPrice")) || 20000,
+        ] as [number, number],
+    }), [searchParams]);
+    const updateQuery = (updates: Record<string, string>) => {
+        const params = new URLSearchParams(searchParams.toString());
+        Object.entries(updates).forEach(([key, value]) => {
+            if (value === "all" || value === "featured" || (key === "minPrice" && value === "0") || (key === "maxPrice" && value === "20000")) {
+                params.delete(key);
+            } else params.set(key, value);
+        });
+        params.delete("page");
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    };
 
     return (
         <>
@@ -76,7 +95,7 @@ const Filters = () => {
                     <span className="font-medium text-sm pl-2">Category</span>
                     <Select
                         value={filters.category}
-                        onValueChange={(val) => dispatch(setCategory(val))}>
+                        onValueChange={(val) => updateQuery({ category: val })}>
                         <SelectTrigger className="bg-background w-full rounded-sm focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0">
                             <SelectValue />
                         </SelectTrigger>
@@ -100,7 +119,7 @@ const Filters = () => {
                 <div className="flex flex-col gap-2 w-full items-start">
                     <span className="font-medium text-sm pl-2">Sort By</span>
                     <Select value={filters.sortBy}
-                        onValueChange={(val) => dispatch(setSortBy(val))}>
+                        onValueChange={(val) => updateQuery({ sort: val })}>
                         <SelectTrigger className="bg-background w-full rounded-sm focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0">
                             <SelectValue />
                         </SelectTrigger>
@@ -131,7 +150,10 @@ const Filters = () => {
                     <Slider
                         id="price-slider"
                         value={filters.priceRange}
-                        onValueChange={(val) => dispatch(setPriceRange(val as [number, number]))}
+                        onValueChange={(val) => {
+                            const [min, max] = val as [number, number];
+                            updateQuery({ minPrice: String(min), maxPrice: String(max) });
+                        }}
                         min={0}
                         max={20000}
                         step={10}

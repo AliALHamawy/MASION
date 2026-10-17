@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const BrandStory = () => {
     return (
@@ -29,7 +29,7 @@ const BrandStory = () => {
                         </div>
                     </div>
                     <div className="right relative w-full rounded-xl overflow-hidden min-h-62 sm:min-h-96">
-                        <Image src="/images/craft.jpg" alt="Brand Story" layout="fill" objectFit="cover" className="object-cover object-center w-full h-full rounded-xl" loading="lazy" />
+                        <Image src="/images/craft.jpg" alt="MAISON artisan craftsmanship" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center w-full h-full rounded-xl" loading="lazy" />
                     </div>
                 </div>
             </div>
