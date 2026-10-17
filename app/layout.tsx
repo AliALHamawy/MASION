@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.SITE_URL ??
-    "https://maison.example.com",
+    "https://masion-store.vercel.app",
   ),
   title: {
     default: "MAISON — Refined Living",

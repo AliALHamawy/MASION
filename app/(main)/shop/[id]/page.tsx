@@ -84,7 +84,7 @@ const page = async ({ params }: props) => {
             availability: product.stock > 0
                 ? "https://schema.org/InStock"
                 : "https://schema.org/OutOfStock",
-            url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://maison.example.com"}/shop/${product.id}`,
+            url: `${process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "https://masion-store.vercel.app"}/shop/${product.id}`,
         },
     };
     const breadcrumbJsonLd = {

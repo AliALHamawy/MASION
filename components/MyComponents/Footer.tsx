@@ -24,37 +24,37 @@ const Footer = () => {
                         <div className="flex flex-col gap-4 items-start col-span">
                             <span className="text-primary text-lg font-bold tracking-tight">Shop</span>
                             <div className="flex flex-col gap-3">
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">New Arrivals</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Best Sellers</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Sale</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Gift Cards</Link>
+                                <Link href="/shop?category=beauty" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Beauty</Link>
+                                <Link href="/shop?category=fragrances" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Fragrances</Link>
+                                <Link href="/shop?category=furniture" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Furniture</Link>
+                                <Link href="/shop?category=groceries" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Groceries</Link>
                             </div>
                         </div>
                         <div className="flex flex-col gap-4 items-start col-span">
                             <span className="text-primary text-lg font-bold tracking-tight">About</span>
                             <div className="flex flex-col gap-3">
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Our Story</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Sustainability</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Careers</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Press</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Our Story</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Sustainability</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Careers</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Press</Link>
                             </div>
                         </div>
                         <div className="flex flex-col gap-4 items-start col-span">
                             <span className="text-primary text-lg font-bold tracking-tight">Help</span>
                             <div className="flex flex-col gap-3">
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">FAQ</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Shipping</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Returns</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Size Guide</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">FAQ</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Shipping</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Returns</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Size Guide</Link>
                             </div>
                         </div>
                         <div className="flex flex-col gap-4 items-start col-span">
                             <span className="text-primary text-lg font-bold tracking-tight">Legal</span>
                             <div className="flex flex-col gap-3">
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Terms of Service</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Privacy Policy</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Cookie Policy</Link>
-                                <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Accessibility</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Terms of Service</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Privacy Policy</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Cookie Policy</Link>
+                                <Link href="/craft" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">Accessibility</Link>
                             </div>
                         </div>
                     </div>

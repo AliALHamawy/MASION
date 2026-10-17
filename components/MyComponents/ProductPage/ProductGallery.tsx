@@ -1,46 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { ShieldCheckIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 interface ProductGalleryProps {
     images: string[];
+    productTitle: string;
     discountPercentage?: number;
 }
 
-const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryProps) => {
-    // تحديد الصورة النشطة حالياً للعرض في الـ Lens
+const ProductGallery = ({ images = [], productTitle, discountPercentage = 0 }: ProductGalleryProps) => {
     const [selectedImage, setSelectedImage] = useState(images[0] || "/images/image.png");
 
     return (
         <div className="flex flex-col w-full gap-4">
-            {/* الصورة الرئيسية مع تأثير الـ Lens */}
-            <div className="relative w-full aspect-square overflow-hidden rounded-xl bg-card border border-border [&_div]:w-full [&_div]:h-full">
+            <div className="relative w-full aspect-square overflow-hidden rounded-xl bg-card border border-border">
                 {discountPercentage > 0 && (
                     <span className="absolute top-3 left-3 bg-black text-background p-1.5 px-4 rounded-md text-[10px] font-bold shadow-lg z-10">
                         {Math.round(discountPercentage)}% off
                     </span>
                 )}
-                <Lens
-                    zoomFactor={2}
-                    lensSize={150}
-                    isStatic={false}
-                    ariaLabel="Zoom Area"
-                >
-                    <div className="relative w-full h-full">
-                        <Image
-                            src={selectedImage}
-                            alt="Product Image"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            priority
-                            className="object-cover object-center"
-                        />
-                    </div>
-                </Lens>
+                <Image
+                    src={selectedImage}
+                    alt={productTitle}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                    className="object-cover object-center"
+                />
             </div>
 
             <div className="w-full justify-start items-center gap-3 h-[120px] overflow-x-auto overflow-y-hidden flex">
@@ -53,7 +42,7 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
                     >
                         <Image
                             src={img}
-                            alt={`Thumbnail ${index + 1}`}
+                            alt={`${productTitle} thumbnail ${index + 1}`}
                             fill
                             sizes="100px"
                             loading="lazy"
@@ -71,6 +60,3 @@ const ProductGallery = ({ images = [], discountPercentage = 0 }: ProductGalleryP
 };
 
 export default ProductGallery;
-const Lens = dynamic(() => import("@/components/ui/lens").then((module) => module.Lens), {
-    ssr: false,
-});
