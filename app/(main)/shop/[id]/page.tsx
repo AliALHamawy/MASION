@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MyBreadcrumb from "@/components/MyComponents/ProductPage/MyBreadcrumb";
 import ProductMain from "@/components/MyComponents/ProductPage/ProductMain";
 import Feature from "@/components/MyComponents/ProductPage/Feature";
@@ -8,6 +9,45 @@ import { notFound } from "next/navigation";
 
 interface props {
     params: Promise<{ id: string }>
+}
+
+export async function generateMetadata(
+    { params }: props,
+): Promise<Metadata> {
+    const { id } = await params;
+    const product = await getProduct(id);
+
+    return {
+        title: product.title,
+        description: product.description,
+        keywords: [
+            product.title,
+            product.category,
+            ...(product.tags ?? []),
+            "MAISON",
+        ],
+        alternates: {
+            canonical: `/shop/${product.id}`,
+        },
+        openGraph: {
+            type: "website",
+            title: product.title,
+            description: product.description,
+            url: `/shop/${product.id}`,
+            images: [
+                {
+                    url: product.thumbnail,
+                    alt: product.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: product.title,
+            description: product.description,
+            images: [product.thumbnail],
+        },
+    };
 }
 
 const gitSinglrProduct = async (id: string): Promise<Product | null> => {

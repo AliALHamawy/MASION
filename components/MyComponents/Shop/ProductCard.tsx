@@ -29,7 +29,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <div className="flex gap-2 w-full justify-between items-center pl-2 min-h-7">
           <h3 className="font-bold text-lg line-clamp-1 cursor-pointer hover:underline ">
+          <Link href={`/shop/${product.id}`} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">
             {product.title}
+          </Link>
           </h3>
           <span className="bg-foreground text-white text-xs font-semibold px-3 py-1 rounded-full shrink-0">
             <PriceTag priceInUSD={product.price} />
