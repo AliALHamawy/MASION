@@ -6,8 +6,8 @@ import { useAppdispatch, useAppSelector } from "@/redux/hooks";
 import { clearCart } from "@/redux/slices/cartSlice";
 import CheckoutForm, {
     CheckoutFormData,
-} from "@/components/MyComponents/CheckOut/CheckoutForm";
-import OrderSummary from "@/components/MyComponents/CheckOut/OrderSummary";
+} from "@/components/MyComponents/checkout/CheckoutForm";
+import OrderSummary from "@/components/MyComponents/checkout/OrderSummary";
 
 const page = () => {
     const dispatch = useAppdispatch();
